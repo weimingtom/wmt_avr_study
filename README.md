@@ -28,7 +28,7 @@ USB-TTL转换器可能会用到公对母杜邦线
 * 固件文件, optiboot_atmega328.hex, see below  
 * 注意事项, 小心变砖：  
 * 因为禁用ISP把一块芯片变砖了（相当于永远地锁死芯片不能读写）  
-* 用串口烧录了，方法是：  
+* progisp+USBASP烧录完bootloader，就可以用USB转串口来烧录了（Arduino IDE），方法是：  
 * 用它(atmega328p)的Reset、RX、TX这三个脚做串口烧录  
 
 ## atmega328p bootloader firmware file, see Arduino IDE board.txt    
