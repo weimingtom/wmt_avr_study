@@ -21,3 +21,21 @@ USB-TTL转换器可能会用到公对母杜邦线
 比蓝色电阻要便宜一些，LED随便都没问题，其实150欧-200欧配合不同颜色和  
 压降LED的效果差别并不大，不需要担心烧掉。200欧的阻值是可以算出的，  
 以前已经讨论过这个问题了  
+
+## progisp.exe, ICSP烧录，使用usbasp烧录器烧录bootloader固件时设置熔丝位方法：  
+* 低位值：FF、高位值：DE、扩展位值：FD、加密值FF  
+* 时钟校正：8.0MHz：85  
+* 固件文件, optiboot_atmega328.hex, see below  
+* 注意事项, 小心变砖：  
+* 因为禁用ISP把一块芯片变砖了（相当于永远地锁死芯片不能读写）  
+* 用串口烧录了，方法是：  
+* 用它(atmega328p)的Reset、RX、TX这三个脚做串口烧录  
+
+## atmega328p bootloader firmware file, see Arduino IDE board.txt    
+uno.bootloader.tool=avrdude  
+uno.bootloader.low_fuses=0xFF  
+uno.bootloader.high_fuses=0xDE  
+uno.bootloader.extended_fuses=0xFD  
+uno.bootloader.unlock_bits=0x3F  
+uno.bootloader.lock_bits=0x0F  
+uno.bootloader.file=optiboot/optiboot_atmega328.hex  
