@@ -44,3 +44,14 @@ uno.bootloader.file=optiboot/optiboot_atmega328.hex
 我又试了一下，终于找到用普通的USB-TTL转换器烧录atmega328p的方法——之前不成功是因为我没有把8M换成16M的晶振。  
 诀窍是用104电容接在atmega328p的reset脚上，然后接在USB-TTL转换器的RTS或DTR脚（有些转换器叫RESET脚），  
 Arduino IDE选择Uno类型  
+
+## 都会明武电子atmega328p散件   
+都会明武电子有一个atmega328p（就是经常说的Arduino Uno或者Nano）的散件。  
+我不记得以前有没有说过，如果说过就重新在整理。这个散件没有任何说明文字。但其实是有坑的，  
+a) 首先怎么烧录bootloader，因为328p默认是不带Arduino的bootloader，所以任何串口烧录都是无效的。  
+bootloader可以通过usbasp或者其他离线烧录器烧录（其实usbasp都可以直接烧录普通的固件，  
+但不是走Arduino IDE的串口烧录流程。另外还需要小心熔丝位的问题，很容易变砖）。  
+b) 其次是，即使328p自带了bootloader，这个散件仍旧有一个问题，如何解决reset脚的问题  
+（串口烧录时自动重置芯片），方法是在328p的RESET脚和串口烧录器RTS (DTR)之间串联  
+一个104电容（0.1uF瓷片电容，利用电容的隔直通交特性）。  
+c) 最后一个问题是，这个散件甚至可以用于stc单片机，但需要替换晶振  
