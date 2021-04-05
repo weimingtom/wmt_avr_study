@@ -39,3 +39,8 @@ uno.bootloader.extended_fuses=0xFD
 uno.bootloader.unlock_bits=0x3F  
 uno.bootloader.lock_bits=0x0F  
 uno.bootloader.file=optiboot/optiboot_atmega328.hex  
+
+## atmega328p reset<->104 capacity<->USB-TTL RTS or DTR  
+我又试了一下，终于找到用普通的USB-TTL转换器烧录atmega328p的方法——之前不成功是因为我没有把8M换成16M的晶振。  
+诀窍是用104电容接在atmega328p的reset脚上，然后接在USB-TTL转换器的RTS或DTR脚（有些转换器叫RESET脚），  
+Arduino IDE选择Uno类型  
