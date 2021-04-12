@@ -55,3 +55,6 @@ b) 其次是，即使328p自带了bootloader，这个散件仍旧有一个问题
 （串口烧录时自动重置芯片），方法是在328p的RESET脚和串口烧录器RTS (DTR)之间串联  
 一个104电容（0.1uF瓷片电容，利用电容的隔直通交特性）。  
 c) 最后一个问题是，这个散件甚至可以用于stc单片机，但需要替换晶振  
+
+## arduino-lite  
+https://github.com/robopeak/arduino-lite  
